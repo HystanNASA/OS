@@ -1,4 +1,4 @@
-bootloader.bin: bootloader.asm printStr.asm readDisk.asm printh.asm
+bootloader.bin: bootloader.asm printStr.asm readDisk.asm printh.asm testA20.asm
 	nasm -f bin bootloader.asm -o bootloader.bin
 	
 clean:

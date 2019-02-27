@@ -8,7 +8,7 @@ print_str:
         mov al, [si]
         cmp al, 0
         je return_from_print_str
-        ;print char
+        
         mov ah, 0xE
         int 0x10
 

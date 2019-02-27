@@ -1,26 +1,33 @@
 ; move data to dx
 printh:
-    mov si, HEX_PATTERN
+    mov si, HEX_PATTERN + 2
+    
+    push cx
+    push bx
 
-    push al
-    push cl
-
-    mov al, [HEX_PATTERN + 2]
     mov cl, 12
 
-    printh_loop:
+    loop_printh:
+
         mov bx, dx
         shr bx, cl
         and bx, 0x000F
-        mov  bx, [bx + HEX_TABLE]
-        mov [al], bl
+        mov bx, [HEX_TABLE + bx]
+        mov byte [si], bl
 
-        inc al
+        inc si
         sub cl, 4
 
-        
+        cmp byte  [si], 0x0a
+        jne loop_printh
 
+    
+    mov si, HEX_PATTERN
     call print_str
+
+    pop bx
+    pop cx
+
     ret
 
 HEX_PATTERN db '0x****', 0x0a, 0x0d, 0

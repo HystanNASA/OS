@@ -29,7 +29,8 @@ ZeroSeg:
     mov cl, 2
     call read_disk
 
-    mov dx, [0x7c00 + 510]
+    call testA20
+    mov dx, ax
     call printh
 
     cli
@@ -38,6 +39,7 @@ ZeroSeg:
 %include "readDisk.asm"
 %include "printStr.asm"
 %include "printh.asm"
+%include "testA20.asm"
 
 times 510 - ($-$$) db 0
 dw 0xAA55
