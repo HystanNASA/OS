@@ -2,8 +2,6 @@ testA20:
     pusha
 
     mov ax, [0x7DFE]
-    mov dx, ax
-    call printh
 
     push bx
     mov bx, 0xFFFF
@@ -17,10 +15,7 @@ testA20:
 
     cmp ax, dx
     je .cont
-
-    mov dx, 0x2222
-    call printh
-
+    
     popa
     mov ax, 1
     ret
