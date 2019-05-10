@@ -2,26 +2,26 @@ enableA20:
     pusha
 
 ;BIOS
-    mov ax, 0x2401 
+    mov ax, 0x2401
     int 0x15
 
-    call testA20    
+    call testA20
     cmp ax, 1
-    je .done        
+    je .done
 
 ;Keyboard
     cli
 
     call waitC
-    mov al, 0xAD     
+    mov al, 0xAD
     out 0x64, al
 
     call waitC
     mov al, 0xD0
     out 0x64, al
 
-    call waitD  
-    in al, 0x60 
+    call waitD
+    in al, 0x60
     push ax
 
     call waitC
@@ -47,7 +47,7 @@ enableA20:
 
 ;FastA20
     in al, 0x92
-    or al, 2    
+    or al, 2
     out 0x92, al
 
     call testA20
@@ -67,12 +67,12 @@ enableA20:
 waitC:
     in al, 0x64
     test al, 2
-    jnz waitC         
+    jnz waitC
     ret
 
 waitD:
     in al, 0x64
-    test al, 1 
+    test al, 1
     jz waitD
     ret
 

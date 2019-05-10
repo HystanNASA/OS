@@ -5,7 +5,6 @@ section .text
     global main
 
 main:
-
     cli
     jmp 0x0000:ZeroSeg
 
@@ -104,9 +103,9 @@ secondSec:
 
 bits 64
 LongMode:
-    
+
     VID_MEM equ 0xB8000
-    
+
     mov edi, VID_MEM
     mov rax, 0x0F54
     mov ecx, 500
