@@ -29,12 +29,7 @@ ZeroSeg:
     call read_disk
 
     call testA20
-    mov dx, ax
-    call printh
-
     call enableA20
-    mov dx, ax
-    call printh
 
     jmp secondSec
 
@@ -77,23 +72,6 @@ secondSec:
         add ebx, 0x1000
         add edi, 8
         loop .setEntry
-
-    ;mov eax, cr4
-    ;or eax, 1 << 5
-    ;mov cr4, eax
-
-    ;mov ecx, 0xC0000080
-    ;rdmsr
-    ;or eax, 1 << 8
-    ;wrmsr
-
-    ;mov eax, cr0
-    ;or eax, 1 << 31
-    ;or eax, 1 << 0
-    ;or eax, 1
-    ;mov cr0, eax
-
-    ;cli
 
     lgdt [GDT.Pointer]
     jmp GDT.Code:LongMode
