@@ -1,5 +1,5 @@
-org 0x7c00
 bits 16
+org 0x7C00
 
 section .text
     global main
@@ -19,13 +19,18 @@ ZeroSeg:
     cld
     sti
 
+    ; reset disk system
     push ax
     xor ax, ax
     int 0x13
     pop ax
 
+    ; read 2nd bootloader
     mov al, 1
     mov cl, 2
+    mov bx, 0
+    mov es, bx
+    mov bx, 0x7C00 + 512
     call read_disk
 
     call testA20

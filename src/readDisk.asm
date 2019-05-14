@@ -1,18 +1,13 @@
-; move the number of sectors to read to al
-; move the sector number to cl
-read_disk:   
+; al is a number of sectors to read
+; cl is a sector
+; es:bx is a buffer adress pointer
+read_disk:
     pusha
 
-    mov ah, 0x02
-    mov dl, 0x80 ; reading from disk
-    mov ch, 0
-    mov dh, 0
-
-    push bx
-    mov bx, 0
-    mov es, bx
-    pop bx
-    mov bx, 0x7c00 + 512
+    mov ah, 0x02 ; read sector from disk
+    mov dl, 0x80 ; read from disk
+    mov ch, 0    ; cylinder
+    mov dh, 0    ; head
 
     int 0x13
 
